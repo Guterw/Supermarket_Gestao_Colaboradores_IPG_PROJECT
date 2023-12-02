@@ -1,0 +1,32 @@
+﻿@{
+        ViewData["Title"] = "Home";
+}
+
+<h2>Supermarket Gestão de Colaboradores</h2>
+<p></p>
+<div>
+    <a asp-action="Index" asp-controller="Funcionarios" class="btn btn-warning">Gerenciar Funcionários</a>
+    <a asp-action="Index" asp-controller="Cargos" class="btn btn-success">Gerenciar Cargos</a>
+</div>
+<p></p>
+<h3>Lista de Funcionários e Cargos</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Cargo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var funcionario in ViewBag.Funcionarios)
+        {
+            <tr>
+                <td>@funcionario.Nome</td>
+                <td>@funcionario.Sobrenome</td>
+                <td>@funcionario.Cargo.Nome</td>
+            </tr>
+        }
+    </tbody>
+</table>

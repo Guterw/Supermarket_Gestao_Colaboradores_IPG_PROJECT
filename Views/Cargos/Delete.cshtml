@@ -1,0 +1,25 @@
+﻿@model Cargos
+
+@{
+    ViewData["Title"] = "Deletar Cargo";
+}
+
+<h2>Deletar Cargo</h2>
+
+<p>Tem certeza de que deseja deletar este cargo?</p>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID:</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Nome:</dt>
+        <dd class="col-sm-10">@Model.Nome</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Deletar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

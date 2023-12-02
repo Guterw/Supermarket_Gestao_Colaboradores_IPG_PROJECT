@@ -1,0 +1,21 @@
+﻿@model Cargos
+
+@{
+    ViewData["Title"] = "Detalhes do Cargo";
+}
+
+<h2>Detalhes do Cargo</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID:</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Nome:</dt>
+        <dd class="col-sm-10">@Model.Nome</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Voltar para a Lista</a>
+</p>

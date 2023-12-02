@@ -1,0 +1,18 @@
+﻿@model Cargos
+
+@{
+    ViewData["Title"] = "Criar Cargo";
+}
+
+<h2>Criar Novo Cargo</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Nome"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

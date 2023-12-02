@@ -1,0 +1,77 @@
+﻿@model List<Cargos>
+
+@{
+    ViewData["Title"] = "Cargos";
+}
+
+@if (ViewBag.MensagemExclusao != null)
+{
+    <div id="mensagemExclusao" class="alert alert-danger" role="alert" style="width: 33%;">
+        @ViewBag.MensagemExclusao
+        <div class="progress" style="height: 10px; margin-top: 5px;">
+            <div id="progressBar" class="progress-bar bg-danger" role="progressbar"></div>
+        </div>
+    </div>
+}
+
+<h2>Lista de Cargos</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Novo Cargo</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cargo in Model)
+        {
+            <tr>
+                <td>@cargo.Id</td>
+                <td>@cargo.Nome</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@cargo.Id" class="btn btn-info">Detalhes</a>
+                    <a asp-action="Edit" asp-route-id="@cargo.Id" class="btn btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@cargo.Id" class="btn btn-danger">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .progress {
+        height: 10px;
+        margin-top: 5px;
+    }
+
+    #progressBar {
+        width: 100%;
+        height: 100%;
+        transition: width 3s linear;
+    }
+</style>
+
+<script>var progressBar = document.getElementById('progressBar');
+    var mensagemExclusao = document.getElementById('mensagemExclusao');
+
+    progressBar.style.width = '100%';
+
+    var duracaoAnimacao = 3000;
+
+    var interval = setInterval(function () {
+        var width = parseFloat(progressBar.style.width);
+        if (width > 0) {
+            progressBar.style.width = (width - (1 / 30) * 100, 0) + '%'; // 1/30 para 30 atualizações por segundo
+        } else {
+            clearInterval(interval);
+            setTimeout(function () {
+                mensagemExclusao.style.display = 'none';
+            }, duracaoAnimacao);
+        }
+    }, duracaoAnimacao / 1000);</script>

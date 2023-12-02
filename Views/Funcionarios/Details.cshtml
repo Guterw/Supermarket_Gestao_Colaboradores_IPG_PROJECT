@@ -1,0 +1,27 @@
+﻿@model Hierarquias.Models.Funcionarios
+
+@{
+    ViewData["Title"] = "Detalhes do Funcionario";
+}
+
+<h2>Detalhes do Funcionário</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">ID:</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Nome:</dt>
+        <dd class="col-sm-10">@Model.Nome</dd>
+
+        <dt class="col-sm-2">Sobrenome:</dt>
+        <dd class="col-sm-10">@Model.Sobrenome</dd>
+
+        <dt class="col-sm-2">Cargo</dt>
+        <dd class="col-sm-10">@Model?.Cargo?.Nome</dd>
+    </dl>
+</div>
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Voltar para a lista de funcionários</a>
+</p>
