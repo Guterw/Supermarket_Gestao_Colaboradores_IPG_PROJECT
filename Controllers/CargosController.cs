@@ -41,7 +41,12 @@ namespace Hierarquias.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (Cargo == null)
             {
-                return NotFound();
+                return RedirectToAction("ItemNaoEncontrado");
+            }
+
+            if (TempData.ContainsKey("MensagemCriadoSuccess"))
+            {
+                ViewBag.MensagemCriadoSuccess = TempData["MensagemCriadoSuccess"];
             }
 
             return View(Cargo);
@@ -60,10 +65,21 @@ namespace Hierarquias.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Verificar se o nome do cargo já existe
+                if (_context.Cargos.Any(c => c.Nome == Cargo.Nome))
+                {
+                    ModelState.AddModelError("Nome", "Já existe um cargo com este nome.");
+                    return View(Cargo);
+                }
+
                 _context.Add(Cargo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["MensagemCriadoSuccess"] = "Cargo criado com sucesso!";
+
+                return RedirectToAction(nameof(Details), new { id = Cargo.Id });
             }
+
             return View(Cargo);
         }
 
@@ -78,7 +94,7 @@ namespace Hierarquias.Controllers
             var Cargo = await _context.Cargos.FindAsync(id);
             if (Cargo == null)
             {
-                return NotFound();
+                return RedirectToAction("ItemNaoEncontrado");
             }
             return View(Cargo);
         }
@@ -95,6 +111,13 @@ namespace Hierarquias.Controllers
 
             if (ModelState.IsValid)
             {
+                // Verificar se o nome do cargo já existe (exceto para o cargo sendo editado)
+                if (_context.Cargos.Any(c => c.Nome == Cargo.Nome && c.Id != Cargo.Id))
+                {
+                    ModelState.AddModelError("Nome", "Já existe um cargo com este nome.");
+                    return View(Cargo);
+                }
+
                 try
                 {
                     _context.Update(Cargo);
@@ -151,6 +174,11 @@ namespace Hierarquias.Controllers
             TempData["MensagemExclusao"] = "Cargo excluído com sucesso.";
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult ItemNaoEncontrado()
+        {
+            return View();
         }
 
         private bool CargoExists(int id)

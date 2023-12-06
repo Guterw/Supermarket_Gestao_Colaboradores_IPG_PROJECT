@@ -4,6 +4,16 @@
     ViewData["Title"] = "Detalhes do Cargo";
 }
 
+@if (ViewBag.MensagemCriadoSuccess != null)
+{
+    <div id="mensagemCriadoSuccess" class="alert alert-success" role="alert" style="width: 33%;">
+        @ViewBag.MensagemCriadoSuccess
+        <div class="progress" style="height: 10px; margin-top: 5px;">
+            <div id="progressBar" class="progress-bar bg-success" role="progressbar"></div>
+        </div>
+    </div>
+}
+
 <h2>Detalhes do Cargo</h2>
 
 <div>
@@ -19,3 +29,37 @@
 <p>
     <a asp-action="Index" class="btn btn-primary">Voltar para a Lista</a>
 </p>
+
+<style>
+    .progress {
+        height: 10px;
+        margin-top: 5px;
+    }
+
+    #progressBar {
+        width: 100%;
+        height: 100%;
+        transition: width 3s linear;
+    }
+</style>
+
+<script>
+    var progressBar = document.getElementById('progressBar');
+    var mensagemCriadoSuccess = document.getElementById('mensagemCriadoSuccess');
+
+    progressBar.style.width = '100%';
+
+    var duracaoAnimacao = 3000;
+
+    var interval = setInterval(function () {
+        var width = parseFloat(progressBar.style.width);
+        if (width > 0) {
+            progressBar.style.width = (width - (1 / 30) * 100, 0) + '%';
+        } else {
+            clearInterval(interval);
+            setTimeout(function () {
+                mensagemCriadoSuccess.style.display = 'none';
+            }, duracaoAnimacao);
+        }
+    }, duracaoAnimacao / 1000);
+</script>
