@@ -17,10 +17,16 @@
         <dd class="col-sm-10">@Model.Nome</dd>
 
         <dt class="col-sm-2">Superiores:</dt>
-        @if (Model.Superior != null)
+        @if (Model.Superiores.Any())
         {
-            <dd>@Model.Superior.Nome</dd>
+            @foreach (var superior in Model.Superiores)
+            {
+                // Converta a expressão lambda para um delegate
+                var getNome = new Func<Funcionarios, string>(f => f.Nome);
+                <dd>@getNome(superior)</dd>
+            }
         }
+
         else
         {
             <dd>Não possui superiores.</dd>

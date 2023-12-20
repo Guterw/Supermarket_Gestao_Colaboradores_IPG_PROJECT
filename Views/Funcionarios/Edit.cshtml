@@ -8,25 +8,25 @@
         <input asp-for="Nome" class="form-control" />
         <span asp-validation-for="Nome" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="SuperiorId" class="control-label"></label>
-        <div class="col-md-10">
-            <select asp-for="SuperiorId" class="form-control">
-                <option value="">Selecione um superior</option>
-                @foreach (var funcionario in ViewBag.TodosOsFuncionarios)
-                {
-                    <option value="@funcionario.Id">@funcionario.Nome</option>
-                }
-            </select>
-            <span asp-validation-for="SuperiorId" class="text-danger"></span>
-        </div>
-    </div>
-
-
-    <!-- Outros campos de edição, se houver -->
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-danger">Cancelar</a>
+        <label asp-for="Superiores"></label>
+        @foreach (var funcionario in ViewBag.TodosOsFuncionarios)
+        {
+            <div class="form-check">
+                <input type="checkbox" name="Superiores" value="@funcionario.Id" class="form-check-input"
+                @(ViewBag.SuperioresSelecionados.Contains(funcionario.Id) ? "checked" : "") />
+                <label class="form-check-label">@funcionario.Nome</label>
+            </div>
+        }
+
+
+
+        <span asp-validation-for="Superiores" class="text-danger"></span>
     </div>
+
+    <p></p>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-danger">Cancelar</a>
 </form>
+

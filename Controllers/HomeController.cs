@@ -25,7 +25,8 @@ public class HomeController : Controller
     public IActionResult ListarSubordinados(int id)
     {
         var subordinados = _context.Funcionarios
-            .Where(f => f.SuperiorId == id)
+            .Include(f => f.Superiores)  // Inclua os superiores na consulta
+            .Where(f => f.Superiores.Any(s => s.Id == id))
             .ToList();
 
         // Obtém o nome do superior para exibição
@@ -37,9 +38,11 @@ public class HomeController : Controller
 
 
 
+
+
     public async Task<IActionResult> IndexAsync()
     {
-        var funcionarios = await _context.Funcionarios.Include(f => f.Superior).ToListAsync();
+        var funcionarios = await _context.Funcionarios.Include(f => f.Superiores).ToListAsync();
 
         ViewBag.Funcionarios = funcionarios;
 

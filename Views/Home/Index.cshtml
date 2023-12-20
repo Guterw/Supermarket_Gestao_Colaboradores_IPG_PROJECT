@@ -24,13 +24,18 @@
             <tr>
                 <td>@funcionario.Nome</td>
                 <td>
-                    @if (funcionario.Superior != null)
+                    @if (funcionario.Superiores != null && funcionario.Superiores.Count > 0)
                     {
-                        <span>@funcionario.Superior.Nome</span>
+                        <ul>
+                            @foreach (var superior in funcionario.Superiores)
+                            {
+                                <li>@superior.Nome</li>
+                            }
+                        </ul>
                     }
                     else
                     {
-                        <span>Nenhum Superior</span>
+                        <p>Nenhum Superior</p>
                     }
                 </td>
             </tr>

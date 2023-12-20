@@ -16,13 +16,20 @@
     </dl>
     <div class="col-md-6">
         <h4>Superior</h4>
-        @if (Model.Superior != null)
+        @if (Model.Superiores.Any())
         {
-            <p>Nome: @Model.Superior.Nome</p>
+            <dt class="col-sm-2">Superiores:</dt>
+            @foreach (var superior in Model.Superiores)
+            {
+                // Converta a expressão lambda para um delegate
+                var getNome = new Func<Funcionarios, string>(f => f.Nome);
+                <dd>@getNome(superior)</dd>
+            }
         }
+
         else
         {
-            <p>Não possui superior.</p>
+            <dd>Não possui superiores.</dd>
         }
     </div>
 

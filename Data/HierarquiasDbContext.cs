@@ -21,15 +21,29 @@ namespace Hierarquias.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Funcionarios>()
-                .HasOne(f => f.Superior)
+                .HasMany(f => f.Superiores)
                 .WithMany(f => f.Subordinados)
-                .HasForeignKey(f => f.SuperiorId)
-                .OnDelete(DeleteBehavior.Restrict); // ou .OnDelete(DeleteBehavior.Cascade), dependendo do que você precisa
+                .UsingEntity<Dictionary<string, object>>(
+                    "FuncionariosSuperiores",
+                    j => j
+                        .HasOne<Funcionarios>()
+                        .WithMany()
+                        .HasForeignKey("SuperiorId")
+                        .OnDelete(DeleteBehavior.Restrict),
+                    j => j
+                        .HasOne<Funcionarios>()
+                        .WithMany()
+                        .HasForeignKey("SubordinadoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                );
 
-            // outras configurações...
+            // Outras configurações...
 
             base.OnModelCreating(modelBuilder);
         }
+
+
+
     }
 
 }

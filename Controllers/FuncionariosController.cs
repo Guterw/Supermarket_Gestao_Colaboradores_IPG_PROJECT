@@ -34,7 +34,7 @@ namespace Hierarquias.Controllers
         {
             var funcionario = _context.Funcionarios
                 .Include(f => f.Subordinados)
-                .Include(f => f.Superior)
+                .Include(f => f.Superiores)
                 .FirstOrDefault(f => f.Id == id);
 
             if (funcionario == null)
@@ -54,7 +54,7 @@ namespace Hierarquias.Controllers
 
             var funcionario = _context.Funcionarios
                 .Include(f => f.Subordinados)
-                .Include(f => f.Superior)
+                .Include(f => f.Superiores)
                 .FirstOrDefault(f => f.Id == id);
 
             if (funcionario == null)
@@ -80,35 +80,38 @@ namespace Hierarquias.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Sobrenome,CargoId,SuperiorId")] Funcionarios funcionario)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Sobrenome,CargoId")] Funcionarios funcionario, int[] Superiores)
         {
             if (ModelState.IsValid)
             {
+                // Adiciona o funcionário ao contexto
                 _context.Add(funcionario);
+
+                // Adiciona os superiores ao funcionário
+                if (Superiores != null && Superiores.Any())
+                {
+                    funcionario.Superiores = await _context.Funcionarios.Where(f => Superiores.Contains(f.Id)).ToListAsync();
+                }
+
+                // Salva as alterações no banco de dados
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome", funcionario.Cargo);
-
-            // Obtenha todos os funcionários disponíveis, incluindo o caso de nenhum superior selecionado
-            var todosOsFuncionarios = _context.Funcionarios.ToList();
-            todosOsFuncionarios.Insert(0, new Funcionarios { Id = 0, Nome = "Nenhum superior" });
-
-            ViewBag.TodosOsFuncionarios = new SelectList(todosOsFuncionarios, "Id", "Nome", funcionario.SuperiorId);
-
+            // Se houver erros de validação, recupera os superiores novamente para preencher a ViewBag
+            ViewBag.TodosOsFuncionarios = new SelectList(await _context.Funcionarios.ToListAsync(), "Id", "Nome");
             return View(funcionario);
         }
 
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            // Obtenha o funcionário que está sendo editado
             var funcionario = await _context.Funcionarios
-                .Include(f => f.Subordinados)
+                .Include(f => f.Superiores)
                 .FirstOrDefaultAsync(f => f.Id == id);
 
             if (funcionario == null)
@@ -116,25 +119,25 @@ namespace Hierarquias.Controllers
                 return NotFound();
             }
 
-            // Carregue todos os funcionários disponíveis para seleção
+            // Popule a lista de todos os funcionários
             var todosOsFuncionarios = await _context.Funcionarios.ToListAsync();
-
             ViewBag.TodosOsFuncionarios = todosOsFuncionarios;
+
+            // Selecione os superiores do funcionário que está sendo editado
+            ViewBag.SuperioresSelecionados = funcionario.Superiores.Select(s => s.Id).ToList();
 
             return View(funcionario);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Funcionarios funcionario)
+        public async Task<IActionResult> Edit(Funcionarios viewModel)
         {
             if (ModelState.IsValid)
             {
-                // Obtenha o funcionário original do banco de dados
                 var funcionarioOriginal = await _context.Funcionarios
-                    .Include(f => f.Subordinados)
-                    .FirstOrDefaultAsync(f => f.Id == funcionario.Id);
+                    .Include(f => f.Superiores)
+                    .FirstOrDefaultAsync(f => f.Id == viewModel.Id);
 
                 if (funcionarioOriginal == null)
                 {
@@ -142,33 +145,58 @@ namespace Hierarquias.Controllers
                 }
 
                 // Atualize outras propriedades...
-                funcionarioOriginal.Nome = funcionario.Nome;
+                funcionarioOriginal.Nome = viewModel.Nome;
 
-                // Atualize o superior
-                funcionarioOriginal.SuperiorId = funcionario.SuperiorId;
+                // Atualize a lista de superiores
+                funcionarioOriginal.Superiores.Clear();
+                if (viewModel.Superiores != null)
+                {
+                    foreach (var superior in viewModel.Superiores)
+                    {
+                        // Certifique-se de que o 'superior' seja do tipo Funcionarios
+                        if (superior is Funcionarios)
+                        {
+                            var superiorExistente = ((Funcionarios)superior)?.Id != null
+    ? await _context.Funcionarios.FindAsync(((Funcionarios)superior).Id)
+    : null;
+
+                            if (superiorExistente != null)
+                            {
+                                funcionarioOriginal.Superiores.Add(superior);
+                            }
+                        }
+                    }
+                }
 
                 // Atualize a lista de subordinados
                 funcionarioOriginal.Subordinados.Clear();
-                foreach (var subordinadoId in funcionario.Subordinados)
+                if (viewModel.Subordinados != null)
                 {
-                    var subordinado = await _context.Funcionarios.FindAsync(subordinadoId);
-                    if (subordinado != null)
+                    foreach (var subordinado in viewModel.Subordinados)
                     {
-                        funcionarioOriginal.Subordinados.Add(subordinado);
+                        // Certifique-se de que o 'subordinado' seja do tipo Funcionarios
+                        if (subordinado is Funcionarios)
+                        {
+                            var subordinadoExistente = await _context.Funcionarios.FindAsync(((Funcionarios)subordinado).Id);
+                            if (subordinadoExistente != null)
+                            {
+                                funcionarioOriginal.Subordinados.Add(subordinadoExistente);
+                            }
+                        }
                     }
                 }
 
                 // Salve as alterações no banco de dados
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Details", new { id = funcionario.Id });
+                return RedirectToAction("Details", new { id = viewModel.Id });
             }
 
-            // Recarregar lista de todos os funcionários
+            // Se houver erros de validação, recupere a lista de todos os funcionários novamente
             var todosOsFuncionarios = await _context.Funcionarios.ToListAsync();
-            ViewBag.TodosOsFuncionarios = await _context.Funcionarios.ToListAsync();
+            ViewBag.TodosOsFuncionarios = todosOsFuncionarios;
 
-            return View(funcionario);
+            return View(viewModel);
         }
 
 
@@ -181,7 +209,7 @@ namespace Hierarquias.Controllers
 
             var funcionario = _context.Funcionarios
                 .Include(f => f.Subordinados)
-                .Include(f => f.Superior)
+                .Include(f => f.Superiores)
                 .FirstOrDefault(f => f.Id == id);
 
             if (funcionario == null)
