@@ -1,0 +1,29 @@
+﻿@model List<Hierarquias.Models.Funcionarios>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="~/favicon.ico" />
+    <title>@ViewData["Resultado"] Resultado da Pesquisa</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Hierarquias.styles.css" asp-append-version="true" />
+</head>
+<div class="container mt-4">
+    <h2 class="mb-4">Subordinados de @ViewBag.NomeSuperior</h2>
+
+    @if (Model.Any())
+    {
+        <ul class="list-group">
+            @foreach (var subordinado in Model)
+            {
+                <li class="list-group-item">@subordinado.Nome</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="mt-4">Nenhum subordinado encontrado.</p>
+    }
+
+    <a asp-action="Subordinados" class="btn btn-secondary mt-3">Voltar</a>
+</div>

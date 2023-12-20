@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hierarquias")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aca97efbc30d1bf73434edf5c49685e8be2695de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e5e0875bcbf9d2eefa95cf209f30bdf5da8ff57")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hierarquias")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hierarquias")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

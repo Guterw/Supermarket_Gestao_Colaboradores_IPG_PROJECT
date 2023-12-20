@@ -31,9 +31,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Views\Cargos\EmptyClass.cs" />
+    <Compile Remove="Views\Funcionarios\Subordinados.cshtml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Cargos\DeletedConfirmed.cshtml" />
+    <Content Remove="Views\Funcionarios\Subordinados.cshtml" />
     <Content Remove="wwwroot\img\carrinho-de-compras.png" />
   </ItemGroup>
 </Project>

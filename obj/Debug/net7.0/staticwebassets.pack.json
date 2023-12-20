@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\wwwroot\\js\\subordinados.js",
+      "PackagePath": "staticwebassets\\js\\subordinados.js"
+    },
+    {
       "Id": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

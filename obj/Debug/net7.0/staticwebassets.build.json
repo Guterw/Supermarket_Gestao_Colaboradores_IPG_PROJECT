@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "SCuixkv36ZXWjCDQ1B9phPp22M/mVsL5mUwxF3j5zhk=",
+  "Hash": "t0MNQwP909TkDT+itbbzf7ux1EoG0MKBoeTZSmk+4XY=",
   "Source": "Hierarquias",
   "BasePath": "_content/Hierarquias",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\wwwroot\\js\\subordinados.js",
+      "SourceId": "Hierarquias",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\wwwroot\\",
+      "BasePath": "_content/Hierarquias",
+      "RelativePath": "js/subordinados.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\subordinados.js"
     },
     {
       "Identity": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

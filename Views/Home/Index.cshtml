@@ -2,20 +2,20 @@
         ViewData["Title"] = "Home";
 }
 
-<h2>Supermarket Gestão de Colaboradores</h2>
+<h2>Supermarket Lista Hierarquica</h2>
 <p></p>
 <div>
     <a asp-action="Index" asp-controller="Funcionarios" class="btn btn-warning">Gerenciar Funcionários</a>
-    <a asp-action="Index" asp-controller="Cargos" class="btn btn-success">Gerenciar Cargos</a>
+    <a asp-action="Subordinados" asp-controller="Home" class="btn btn-info">Lista de Subordinados</a>
 </div>
 <p></p>
-<h3>Lista de Funcionários e Cargos</h3>
+<h3>Lista de Funcionários</h3>
 
 <table class="table">
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Cargo</th>
+            <th>Superior</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,16 @@
         {
             <tr>
                 <td>@funcionario.Nome</td>
-                <td>@funcionario.Cargo</td>
+                <td>
+                    @if (funcionario.Superior != null)
+                    {
+                        <span>@funcionario.Superior.Nome</span>
+                    }
+                    else
+                    {
+                        <span>Nenhum Superior</span>
+                    }
+                </td>
             </tr>
         }
     </tbody>
