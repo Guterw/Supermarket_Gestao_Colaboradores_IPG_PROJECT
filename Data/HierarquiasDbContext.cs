@@ -16,9 +16,21 @@ namespace Hierarquias.Data
         }
 
         public DbSet<Cargos> Cargos { get; set; } = default!;
+    public DbSet<Funcionarios> Funcionarios { get; set; }
 
-        public DbSet<Funcionarios> Funcionarios { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Funcionarios>()
+                .HasOne(f => f.Superior)
+                .WithMany(f => f.Subordinados)
+                .HasForeignKey(f => f.SuperiorId)
+                .OnDelete(DeleteBehavior.Restrict); // ou .OnDelete(DeleteBehavior.Cascade), dependendo do que você precisa
 
+            // outras configurações...
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
+
 }
 

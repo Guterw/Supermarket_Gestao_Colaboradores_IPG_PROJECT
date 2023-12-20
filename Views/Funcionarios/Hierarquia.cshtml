@@ -1,0 +1,23 @@
+﻿@model Hierarquias.Models.Funcionarios
+
+<h2>Hierarquia do Funcionário: @Model.Nome</h2>
+
+@if (Model.Superior != null)
+{
+    <p>Superior: @Model.Superior.Nome</p>
+}
+
+@if (Model.Subordinados.Any())
+{
+    <p>Subordinados:</p>
+    <ul>
+        @foreach (var subordinado in Model.Subordinados)
+        {
+            <li>@subordinado.Nome</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Não possui subordinados.</p>
+}

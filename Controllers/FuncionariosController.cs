@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Hierarquias.Controllers
 {
     public class FuncionariosController : Controller
@@ -17,33 +18,24 @@ namespace Hierarquias.Controllers
             _context = context;
         }
 
-        // GET: Funcionarios
         public async Task<IActionResult> Index()
         {
-            // Verifica se há uma mensagem de exclusão na TempData
             if (TempData.ContainsKey("MensagemExclusao"))
             {
                 ViewBag.MensagemExclusao = TempData["MensagemExclusao"];
             }
 
             var funcionarios = await _context.Funcionarios
-                .Include(f => f.Cargo)
                 .ToListAsync();
 
             return View(funcionarios);
         }
-
-        // GET: Funcionarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Hierarquia(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var funcionario = await _context.Funcionarios
-                .Include(f => f.Cargo)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var funcionario = _context.Funcionarios
+                .Include(f => f.Subordinados)
+                .Include(f => f.Superior)
+                .FirstOrDefault(f => f.Id == id);
 
             if (funcionario == null)
             {
@@ -53,16 +45,42 @@ namespace Hierarquias.Controllers
             return View(funcionario);
         }
 
-        // GET: Funcionarios/Create
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var funcionario = _context.Funcionarios
+                .Include(f => f.Subordinados)
+                .Include(f => f.Superior)
+                .FirstOrDefault(f => f.Id == id);
+
+            if (funcionario == null)
+            {
+                return NotFound();
+            }
+
+            return View(funcionario);
+        }
+
         public IActionResult Create()
         {
             ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome");
+
+            // Obtenha todos os funcionários disponíveis, incluindo o caso de nenhum superior selecionado
+            var todosOsFuncionarios = _context.Funcionarios.ToList();
+            todosOsFuncionarios.Insert(0, new Funcionarios { Id = 0, Nome = "Nenhum superior" });
+
+            ViewBag.TodosOsFuncionarios = new SelectList(todosOsFuncionarios, "Id", "Nome");
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Sobrenome,CargoId")] Funcionarios funcionario)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Sobrenome,CargoId,SuperiorId")] Funcionarios funcionario)
         {
             if (ModelState.IsValid)
             {
@@ -71,11 +89,17 @@ namespace Hierarquias.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome", funcionario.CargoId);
+            ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome", funcionario.Cargo);
+
+            // Obtenha todos os funcionários disponíveis, incluindo o caso de nenhum superior selecionado
+            var todosOsFuncionarios = _context.Funcionarios.ToList();
+            todosOsFuncionarios.Insert(0, new Funcionarios { Id = 0, Nome = "Nenhum superior" });
+
+            ViewBag.TodosOsFuncionarios = new SelectList(todosOsFuncionarios, "Id", "Nome", funcionario.SuperiorId);
+
             return View(funcionario);
         }
 
-        // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,64 +107,82 @@ namespace Hierarquias.Controllers
                 return NotFound();
             }
 
-            var funcionario = await _context.Funcionarios.FindAsync(id);
+            var funcionario = await _context.Funcionarios
+                .Include(f => f.Subordinados)
+                .FirstOrDefaultAsync(f => f.Id == id);
 
             if (funcionario == null)
             {
                 return NotFound();
             }
 
-            ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome", funcionario.CargoId);
+            // Carregue todos os funcionários disponíveis para seleção
+            var todosOsFuncionarios = await _context.Funcionarios.ToListAsync();
+
+            ViewBag.TodosOsFuncionarios = todosOsFuncionarios;
+
             return View(funcionario);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Sobrenome,CargoId")] Funcionarios funcionario)
+        public async Task<IActionResult> Edit(Funcionarios funcionario)
         {
-            if (id != funcionario.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
+                // Obtenha o funcionário original do banco de dados
+                var funcionarioOriginal = await _context.Funcionarios
+                    .Include(f => f.Subordinados)
+                    .FirstOrDefaultAsync(f => f.Id == funcionario.Id);
+
+                if (funcionarioOriginal == null)
                 {
-                    _context.Update(funcionario);
-                    await _context.SaveChangesAsync();
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                // Atualize outras propriedades...
+                funcionarioOriginal.Nome = funcionario.Nome;
+
+                // Atualize o superior
+                funcionarioOriginal.SuperiorId = funcionario.SuperiorId;
+
+                // Atualize a lista de subordinados
+                funcionarioOriginal.Subordinados.Clear();
+                foreach (var subordinadoId in funcionario.Subordinados)
                 {
-                    if (!FuncionarioExists(funcionario.Id))
+                    var subordinado = await _context.Funcionarios.FindAsync(subordinadoId);
+                    if (subordinado != null)
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        funcionarioOriginal.Subordinados.Add(subordinado);
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                // Salve as alterações no banco de dados
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Details", new { id = funcionario.Id });
             }
 
-            ViewBag.Cargos = new SelectList(_context.Cargos, "Id", "Nome", funcionario.CargoId);
+            // Recarregar lista de todos os funcionários
+            var todosOsFuncionarios = await _context.Funcionarios.ToListAsync();
+            ViewBag.TodosOsFuncionarios = await _context.Funcionarios.ToListAsync();
+
             return View(funcionario);
         }
 
 
-        // GET: Funcionarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var funcionario = await _context.Funcionarios
-                .Include(f => f.Cargo)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
+            var funcionario = _context.Funcionarios
+                .Include(f => f.Subordinados)
+                .Include(f => f.Superior)
+                .FirstOrDefault(f => f.Id == id);
 
             if (funcionario == null)
             {
@@ -163,12 +205,10 @@ namespace Hierarquias.Controllers
             _context.Funcionarios.Remove(funcionario);
             await _context.SaveChangesAsync();
 
-            // Adiciona uma mensagem TempData para ser exibida na próxima solicitação
             TempData["MensagemExclusao"] = "Funcionário excluído com sucesso.";
 
             return RedirectToAction(nameof(Index));
         }
-
 
         private bool FuncionarioExists(int id)
         {

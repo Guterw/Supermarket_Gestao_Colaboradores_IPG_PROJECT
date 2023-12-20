@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/luccasfalmeida/Desktop/Hierarquias/Hierarquias.csproj": {}
+    "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\Hierarquias.csproj": {}
   },
   "projects": {
-    "/Users/luccasfalmeida/Desktop/Hierarquias/Hierarquias.csproj": {
+    "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\Hierarquias.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/luccasfalmeida/Desktop/Hierarquias/Hierarquias.csproj",
+        "projectUniqueName": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\Hierarquias.csproj",
         "projectName": "Hierarquias",
-        "projectPath": "/Users/luccasfalmeida/Desktop/Hierarquias/Hierarquias.csproj",
-        "packagesPath": "/Users/luccasfalmeida/.nuget/packages/",
-        "outputPath": "/Users/luccasfalmeida/Desktop/Hierarquias/obj/",
+        "projectPath": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\Hierarquias.csproj",
+        "packagesPath": "C:\\Users\\Luccas\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luccas\\Documents\\GitHub\\Supermarket_Gestao_Colaboradores_IPG_PROJECT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/luccasfalmeida/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Luccas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.311/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -52,6 +53,12 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
             }
           },
           "imports": [
@@ -73,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.311/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

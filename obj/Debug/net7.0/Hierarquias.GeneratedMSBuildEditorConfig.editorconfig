@@ -9,81 +9,87 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Hierarquias
 build_property.RootNamespace = Hierarquias
-build_property.ProjectDir = /Users/luccasfalmeida/Desktop/Hierarquias/
+build_property.ProjectDir = C:\Users\Luccas\Documents\GitHub\Supermarket_Gestao_Colaboradores_IPG_PROJECT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/luccasfalmeida/Desktop/Hierarquias
+build_property.MSBuildProjectDirectory = C:\Users\Luccas\Documents\GitHub\Supermarket_Gestao_Colaboradores_IPG_PROJECT
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Cargos/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FyZ29zL0NyZWF0ZS5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Cargos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Cargos/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FyZ29zL0RlbGV0ZS5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Cargos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Cargos/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FyZ29zL0RldGFpbHMuY3NodG1s
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Cargos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Cargos/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FyZ29zL0VkaXQuY3NodG1s
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Cargos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Cargos/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FyZ29zL0luZGV4LmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Cargos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Funcionarios/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW9zL0NyZWF0ZS5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Funcionarios/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW9zL0RlbGV0ZS5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Funcionarios/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW9zL0RldGFpbHMuY3NodG1s
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Funcionarios/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW9zL0VkaXQuY3NodG1s
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Funcionarios/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW9zL0luZGV4LmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Hierarquia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEhpZXJhcnF1aWEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Funcionarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Shared/ItemNaoEncontrado.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0l0ZW1OYW9FbmNvbnRyYWRvLmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Shared/ItemNaoEncontrado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEl0ZW1OYW9FbmNvbnRyYWRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/luccasfalmeida/Desktop/Hierarquias/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-0aca8w05xd
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Luccas/Documents/GitHub/Supermarket_Gestao_Colaboradores_IPG_PROJECT/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-87mdqo2xf8

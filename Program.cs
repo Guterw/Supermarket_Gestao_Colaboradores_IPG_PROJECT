@@ -30,5 +30,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+        name: "hierarquia",
+        pattern: "{controller=Funcionarios}/{action=Hierarquia}/{id?}");
+
 app.Run();
 

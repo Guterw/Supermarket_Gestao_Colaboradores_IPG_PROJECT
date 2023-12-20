@@ -12,11 +12,9 @@ public class HomeController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> IndexAsync()
     {
-        var funcionarios = _context.Funcionarios
-            .Include(f => f.Cargo)
-            .ToList();
+        var funcionarios = await _context.Funcionarios.ToListAsync();
 
         ViewBag.Funcionarios = funcionarios;
 
