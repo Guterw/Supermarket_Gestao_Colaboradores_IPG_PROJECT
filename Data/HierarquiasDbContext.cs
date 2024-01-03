@@ -29,12 +29,12 @@ namespace Hierarquias.Data
                         .HasOne<Funcionarios>()
                         .WithMany()
                         .HasForeignKey("SuperiorId")
-                        .OnDelete(DeleteBehavior.Restrict),
+                        .OnDelete(DeleteBehavior.Cascade),
                     j => j
                         .HasOne<Funcionarios>()
                         .WithMany()
                         .HasForeignKey("SubordinadoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                 );
 
             // Outras configurações...

@@ -224,10 +224,20 @@ namespace Hierarquias.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var funcionario = await _context.Funcionarios.FindAsync(id);
+            var funcionario = await _context.Funcionarios
+                .Include(f => f.Subordinados)
+                .Include(f => f.Superiores)
+                .FirstOrDefaultAsync(f => f.Id == id);
+
             if (funcionario == null)
             {
                 return NotFound();
+            }
+
+            // Remover referências do funcionário como superior de outros funcionários
+            foreach (var subordinado in funcionario.Subordinados)
+            {
+                subordinado.Superiores.Remove(funcionario);
             }
 
             _context.Funcionarios.Remove(funcionario);
@@ -237,6 +247,7 @@ namespace Hierarquias.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool FuncionarioExists(int id)
         {
